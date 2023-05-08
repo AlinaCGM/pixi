@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Pixi.js Webpage</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.0.4/pixi.min.js"></script>
+  </head>
+  <body>
+    <canvas id="pixiCanvas"></canvas>
+    <script>
+      const app = new PIXI.Application({ width: 800, height: 600 });
+      document.body.appendChild(app.view);
+
+      const sprite = PIXI.Sprite.from(
+        "https://w7.pngwing.com/pngs/937/720/png-transparent-coin-heap-gold-game-asset-lottery-luck-thumbnail.png"
+      );
+      sprite.anchor.set(0.5);
+      sprite.x = app.screen.width / 2;
+      sprite.y = app.screen.height / 2;
+      app.stage.addChild(sprite);
+
+      app.ticker.add(() => {
+        sprite.rotation += 0.01;
+      });
+    </script>
+  </body>
+</html>
