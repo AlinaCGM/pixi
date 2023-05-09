@@ -1,0 +1,22 @@
+{
+  "name": "1a_pixi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlinaCGM/pixi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlinaCGM/pixi/issues"
+  },
+  "homepage": "https://github.com/AlinaCGM/pixi#readme",
+  "dependencies": {
+    "pixi.js": "^7.2.4"
+  }
+}
