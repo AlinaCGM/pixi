@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/AlinaCGM/pixi#readme",
   "dependencies": {
+    "@pixi/graphics-extras": "^7.2.4",
     "pixi.js": "^7.2.4"
   }
 }

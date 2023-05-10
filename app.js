@@ -41,3 +41,20 @@ const circle = new Graphics();
 circle.beginFill(0x0000ff).drawCircle(440, 200, 80).endFill();
 
 app.stage.addChild(circle);
+
+const line = new Graphics();
+line.lineStyle(10, 0xffea00).moveTo(350, 100).lineTo(350, 800);
+app.stage.addChild(line);
+
+const torus = new Graphics();
+torus
+  .beginFill(0xfffddd)
+  .drawTorus(100, 700, 80, 100, 0, Math.PI / 2) //last 2 indicates which part to draw
+  .endFill();
+
+app.stage.addChild(torus);
+
+const star = new Graphics();
+star.beginFill(0xddaa00).drawStar(100, 500, 5, 80).endFill();
+
+app.stage.addChild(star);
