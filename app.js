@@ -28,6 +28,8 @@ rectangle
 
 app.stage.addChild(rectangle); //showing created item in app
 
+//GRAPHICS
+
 const poly = new Graphics();
 poly
   .beginFill(0xff66ff)
@@ -55,6 +57,54 @@ torus
 app.stage.addChild(torus);
 
 const star = new Graphics();
-star.beginFill(0xddaa00).drawStar(100, 500, 5, 80).endFill();
+star.beginFill(0xddaa00).drawStar(100, 500, 100, 80).endFill();
 
 app.stage.addChild(star);
+
+//TEXT
+
+const style = new PIXI.TextStyle({
+  fontFamily: "Montserrat",
+  fontSize: 48,
+  fill: "deepskyblue",
+  stroke: "#08e514",
+  strokeThickness: 4,
+  dropShadow: true,
+  dropShadowDistance: 10,
+  dropShadowAngle: Math.PI / 2,
+  dropShadowBlur: 4,
+  dropShadowColor: "#000000",
+});
+
+const myText = new PIXI.Text("Hello World!", style);
+
+//changes of existing values
+
+app.stage.addChild(myText);
+
+myText.text = "Text Changed!";
+myText.style.wordWrap = true;
+myText.style.wordWrapWidth = 100;
+myText.style.align = "center";
+
+// create an ANIMATE element automatically
+//use request animation frame method
+
+// app.ticker.add((delta) => loop(delta));
+
+// function loop(delta) {
+//   const rect = new Graphics(); //creating new item
+//   rect
+//     .beginFill(0xff33dd)
+//     .lineStyle(4, 0xffad00)
+//     .drawRect(
+//       Math.random() * app.screen.width,
+//       Math.random() * app.screen.height,
+//       1,
+//       1
+//     ) //first two-coordinates, second two-width and height
+//     .endFill();
+
+//app.stage.addChild(rect); //showing created item in app
+//-----------------------------------
+//IMAGES
