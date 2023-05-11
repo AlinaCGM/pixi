@@ -7,7 +7,7 @@ const app = new Application({
   antialias: true, //to smooth out the jagged edges of lines and curves in digital graphics.
 });
 
-app.renderer.backgroundColor = 0x23395d;
+app.renderer.background.color = "0x23395d";
 
 app.renderer.resize(window.innerWidth, window.innerHeight);
 
@@ -106,5 +106,107 @@ myText.style.align = "center";
 //     .endFill();
 
 //app.stage.addChild(rect); //showing created item in app
+
 //-----------------------------------
+
 //IMAGES
+//----------------ADDING AN IMAGE
+
+// const char1Texture = PIXI.Texture.from("./images/bullet.png");
+// const char1Sprite = new PIXI.Sprite(char1Texture);  OR
+const char1Sprite = PIXI.Sprite.from("./images/bullet.png");
+app.stage.addChild(char1Sprite);
+//-------------------SIZE
+//one way
+// char1Sprite.width = 500;
+// char1Sprite.height = 500;
+//another way
+// char1Sprite.scale.x = 2;
+// char1Sprite.scale.y = 2;
+//third way
+char1Sprite.scale.set(2, 2);
+//------------------POSITION
+//ONE WAY
+// char1Sprite.x = 200;
+// char1Sprite.y = 400;
+//another way
+char1Sprite.position.set(200, 400);
+
+//................ANIMATION
+
+app.ticker.add((delta) => loop(delta));
+function loop(delta) {
+  // char1Sprite.x += 1; //TRANSITION
+  //char1Sprite.rotation += 0.01; //ROTATION
+}
+
+char1Sprite.anchor.set(1, 1); //anchor
+
+//............INTERACTION
+char1Sprite.eventMode = true;
+char1Sprite.buttonMode = true;
+
+char1Sprite.on("pointerdown", function () {
+  char1Sprite.scale.x += 0.1;
+  char1Sprite.scale.y += 0.1;
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight") char1Sprite.x += 10;
+  if (e.key === "ArrowLeft") char1Sprite.x -= 10;
+  if (e.key === "ArrowUp") char1Sprite.y -= 10;
+  if (e.key === "ArrowDown") char1Sprite.y += 10;
+});
+
+//...........IMAGES IN ONE CONTAINER
+
+const container = new PIXI.Container();
+const catSprite = PIXI.Sprite.from("./images/cat.jpg");
+container.addChild(catSprite);
+const gunSprite = PIXI.Sprite.from("./images/gun.jpg");
+container.addChild(gunSprite);
+app.stage.addChild(container);
+
+container.x = 300;
+
+catSprite.width = 100;
+catSprite.height = 100;
+catSprite.position.set(100, 200);
+gunSprite.width = 20;
+gunSprite.height = 20;
+gunSprite.position.set(150, 250);
+
+const particleContainer = new PIXI.ParticleContainer(1000, {
+  position: true,
+  rotation: true,
+  vertices: true,
+  tint: true,
+  uvs: true,
+});
+
+const duckTexture = PIXI.Texture.from("./images/duck.png");
+const orangeTexture = PIXI.Texture.from("./images/orange.png");
+
+// Use textures when they are loaded
+duckTexture.baseTexture.on("loaded", () => {
+  const duckSprite = new PIXI.Sprite(duckTexture);
+  duckSprite.y = 400;
+  duckSprite.width = 100;
+  duckSprite.height = 100;
+  app.stage.addChild(duckSprite);
+});
+
+const dragonTexture = PIXI.Texture.from("./images/drags.json");
+dragonTexture.baseTexture.on("loaded", () => {
+  const textures = [];
+  for (let i = 1; i < 13; i++) {
+    const texture = PIXI.Texture.from(`drag${i}.png`);
+    textures.push(texture);
+  }
+  const drag = new PIXI.AnimatedSprite(textures);
+  drag.position.set(800, 300);
+  drag.scale.set(2, 2);
+  app.stage.addChild(drag);
+  drag.play();
+  drag.animationSpeed = 0.1;
+});
